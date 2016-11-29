@@ -1,0 +1,5 @@
+# Monit configuration for Puma
+check process puma_{{ deploy_app_name }}_production
+  with pidfile "{{ deploy_dir }}{{ deploy_app_name }}/shared/tmp/pids/puma.pid"
+  start program = "/usr/bin/sudo -u {{ deploy_user }} /bin/bash -c 'cd {{ deploy_dir }}{{ deploy_app_name }}/current && /usr/local/bin/chruby-exec ruby-{{ ruby_version }} -- bundle exec puma -C {{ deploy_dir  }}{{ deploy_app_name  }}/shared/puma.rb --daemon'"
+  stop program = "/usr/bin/sudo -u {{ deploy_user }} /bin/bash -c 'cd {{ deploy_dir }}{{ deploy_app_name }}/current && /usr/local/bin/chruby-exec ruby-{{ ruby_version }} -- bundle exec pumactl -S {{ deploy_dir  }}{{ deploy_app_name  }}/shared/tmp/pids/puma.state stop'"

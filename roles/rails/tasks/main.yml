@@ -1,0 +1,39 @@
+---
+- name: Create deploy dir
+  file: path={{ deploy_dir }}{{ deploy_app_name }} state=directory owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Create releases dir
+  file: path={{ deploy_dir }}{{ deploy_app_name }}/releases state=directory owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Create repo dir
+  file: path={{ deploy_dir }}{{ deploy_app_name }}/repo state=directory owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Create shared dir
+  file: path={{ deploy_dir }}{{ deploy_app_name }}/shared state=directory owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Create shared/config dir
+  file: path={{ deploy_dir }}{{ deploy_app_name }}/shared/config state=directory owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Create shared/log dir
+  file: path={{ deploy_dir }}{{ deploy_app_name }}/shared/log state=directory owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Create shared/public dir
+  file: path={{ deploy_dir }}{{ deploy_app_name }}/shared/public state=directory owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Create shared/tmp dir
+  file: path={{ deploy_dir }}{{ deploy_app_name }}/shared/tmp state=directory owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Copy secrets.yml
+  template: src=secrets.yml dest={{ deploy_dir }}{{ deploy_app_name }}/shared/config/secrets.yml owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Copy database.yml
+  template: src=database.yml dest={{ deploy_dir }}{{ deploy_app_name }}/shared/config/database.yml owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Copy puma.rb
+  template: src=puma.rb dest={{ deploy_dir }}{{ deploy_app_name }}/shared/puma.rb owner={{ deploy_user }} group={{ deploy_user }}
+
+- name: Restart Nginx
+  service: name=nginx state=restarted enabled=yes
+
+- name: Ensure Nginx is running
+  service: name=nginx state=started enabled=yes

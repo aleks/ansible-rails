@@ -1,0 +1,31 @@
+---
+- name: Install MySQL
+  apt: name={{ item }} state=latest update_cache=true
+  with_items:
+    - python-mysqldb
+    - mysql-server
+    - mysql-client
+    - libmysqlclient-dev
+
+- name: Ensure MySQL service is up
+  action: service name=mysql state=started
+
+- name: Update MySQL root password for all root accounts
+  action: mysql_user name=root host={{ item  }} password={{ mysql_root_db_password  }}
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: Ensure anonymous users are not in the database
+  action: mysql_user name='' host={{ item }} state=absent
+  with_items:
+    - $inventory_hostname
+    - $ansible_hostname
+    - localhost
+
+- name: Create MySQL Database
+  action: mysql_db name={{ deploy_app_name  }} state=present
+
+- name: Create MySQL User
+  action: mysql_user name={{ deploy_app_name  }} priv={{ deploy_app_name  }}.*:ALL state=present password="{{ mysql_app_db_password }}"

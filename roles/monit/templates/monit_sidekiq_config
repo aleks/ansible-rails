@@ -1,0 +1,6 @@
+# Monit configuration for Sidekiq
+check process sidekiq_{{ deploy_app_name }}_production0
+  with pidfile "{{ deploy_dir }}{{ deploy_app_name }}/shared/tmp/pids/sidekiq-0.pid"
+  start program = "/usr/bin/sudo -u {{ deploy_user }} /bin/bash -c 'cd {{ deploy_dir }}{{ deploy_app_name }}/current && /usr/local/bin/chruby-exec ruby-{{ ruby_version }} -- bundle exec sidekiq  --index 0 --pidfile {{ deploy_dir }}{{ deploy_app_name }}/shared/tmp/pids/sidekiq-0.pid --environment production  --logfile {{ deploy_dir }}{{ deploy_app_name }}/shared/log/sidekiq.log -d'"
+
+  stop program = "/usr/bin/sudo -u {{ deploy_user }} /bin/bash -c 'cd {{ deploy_dir }}{{ deploy_app_name }}/current && /usr/local/bin/chruby-exec ruby-{{ ruby_version }}-- bundle exec sidekiqctl stop {{ deploy_dir }}{{ deploy_app_name }}/shared/tmp/pids/sidekiq-0.pid'"

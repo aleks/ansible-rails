@@ -1,0 +1,17 @@
+---
+- name: Install Nginx
+  apt: name=nginx state=latest
+
+- name: Copy nginx configuration (with HTTPS enabled)
+  template: src=nginx_app_config_https dest=/etc/nginx/sites-available/{{ deploy_app_name }} owner=root group=root
+  when: nginx_https_enabled is defined and nginx_https_enabled == true
+
+- name: Copy nginx configuration (without HTTPS enabled)
+  template: src=nginx_app_config dest=/etc/nginx/sites-available/{{ deploy_app_name }} owner=root group=root
+  when: nginx_https_enabled is defined and nginx_https_enabled != true
+
+- name: Disable default config
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Symlink to sites-enabled
+  file: src=/etc/nginx/sites-available/{{ deploy_app_name }} dest=/etc/nginx/sites-enabled/{{ deploy_app_name }} owner=root group=root state=link

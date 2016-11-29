@@ -1,0 +1,25 @@
+---
+- name: Create certbot directory
+  file: path=/opt/certbot state=directory mode=0755 owner=root group=root
+
+- name: Install certbot standalone
+  get_url:
+    url: "{{ certbot_url }}"
+    dest: "{{ certbot_dir }}/certbot-auto"
+
+- name: Ensure certbot-auto is executable.
+  file:
+    path: "{{ certbot_dir }}/certbot-auto"
+    mode: 0755
+
+- name: Check for certificates
+  stat: path=/etc/letsencrypt/live/
+  register: certificate_installed
+
+- name: Get initial certificate
+  command: "{{ certbot_dir }}/certbot-auto certonly --non-interactive --quiet --agree-tos --email {{ certbot_email }} --standalone --pre-hook 'service nginx stop' --post-hook 'service nginx start' -d {{ deploy_server_hostname }}"
+  when: certificate_installed.stat.isdir is defined and certificate_installed.stat.isdir
+  notify: restart nginx
+
+- name: Add cerbot renewel cronjob
+  cron: name="renew letsencrypt certificates" hour="0" minute="0" job="/bin/bash {{ certbot_dir }}/certbot-auto renew --non-interactive --quiet --standalone --pre-hook 'service nginx stop' --post-hook 'service nginx start'"

@@ -1,0 +1,23 @@
+# Install python and aptitude on the target machines (apt-get install python aptitude)
+# Copy ssh public key to machines (ssh-copy-id user@host)
+---
+- name: Install Rails Server
+  hosts: webservers
+  # After initial provisioning, use deploy instead of root
+  remote_user: root
+  # remote_user: deploy
+  # become: yes
+  # become_method: sudo
+
+  roles:
+    - common
+    - deploy-user
+    - mysql
+    - nginx
+    - certbot
+    - ruby
+    - rails
+    - monit
+    - memcached
+    - redis
+    - elasticsearch

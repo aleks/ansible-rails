@@ -1,0 +1,48 @@
+---
+# Server Timzone + Locale
+timezone: Europe/Berlin
+locale: en_US.UTF-8
+
+# Swap
+# Uncommend here and in /roles/common/tasks/main.yml
+swap_enabled: true
+swap_file_path: /swapfile
+swap_file_size_kb: 1024
+
+# General settings
+deploy_dir: /home/deploy/
+deploy_user: deploy
+deploy_password: SET_PASSWORD_HERE
+deploy_app_name: SET_APP_NAME_HERE
+deploy_server_hostname: SET_APP_HOSTNAME_HERE
+
+# Nginx
+nginx_https_enabled: true
+
+# Certbot
+certbot_url: https://dl.eff.org/certbot-auto
+certbot_dir: /opt/certbot
+certbot_email: SET_EMAIL_HERE
+
+# Authorized Hosts
+# This copies your local public key to the remote machine
+# for passwordless login. Modify this!
+ssh_public_key_files:
+  - /Users/SET_YOUR_LOCAL_USERNAME_HERE/.ssh/id_rsa.pub
+
+# MySQL
+mysql_root_db_password: SET_PASSWORD_HERE
+mysql_app_db_password: SET_PASSWORD_HERE
+
+# Ruby
+ruby_install_version: 0.6.0
+chruby_version: 0.3.9
+ruby_version: 2.3.1
+
+# Rails
+rails_secret_key_base: SET_RAILS_SECRET_KEY_BASE_HERE
+puma_workers: 4
+puma_threads: 4,16
+
+# Elasticsearch
+elasticsearch_version: 2.3.1
