@@ -1,4 +1,7 @@
 ---
+- name: gather facts
+  setup:
+
 - name: Perform Safe Upgrade
   apt: upgrade=safe update_cache=yes
 

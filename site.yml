@@ -8,6 +8,7 @@
   # remote_user: deploy
   # become: yes
   # become_method: sudo
+  gather_facts: no # don't gather facts because /usr/bin/python isn't set
   pre_tasks:
     - name: apt-get update
       raw: apt-get update -qq
