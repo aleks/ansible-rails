@@ -20,14 +20,8 @@ Use this ansible playbook to setup a fresh server with the following components:
 
 ## Prerequisites & Config
 
-1. Before you can install this playbook, you need to install ```python``` and ```aptitude``` on the target machine.
-
-	```
-	apt-get update && apt-get install python aptitude
-	```
-
-2. Rename ```hosts.example``` to ```hosts``` and modify the contents.
-3. Rename ```group_vars/all.example``` to ```group_vars/all``` and modify the contentes.
+1. Rename ```hosts.example``` to ```hosts``` and modify the contents.
+2. Rename ```group_vars/all.example``` to ```group_vars/all``` and modify the contentes.
 
 	There are a bunch of things you can set in ```group_vars/all```. Don't forget to add your host address to ```hosts```.
 
