@@ -80,7 +80,7 @@ Your ```config/deploy.rb``` should look similar to this example:
 set :application, 'deploy_app_name'
 set :repo_url, 'YOUR_GIT_REPO'
 set :deploy_to, '/home/deploy/deploy_app_name'
-set :chruby_ruby, 'ruby-2.3.1'
+set :chruby_ruby, 'ruby-2.3.3'
 set :nginx_use_ssl, true
 set :puma_init_active_record, true
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
