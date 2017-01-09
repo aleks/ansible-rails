@@ -19,3 +19,4 @@
 - name: Copy Sidekiq monit config
   template: src=monit_sidekiq_config dest=/etc/monit/conf.d/sidekiq_{{ deploy_app_name }}.conf owner={{ deploy_user }} group={{ deploy_user }}
   notify: restart monit
+  when: monit_sidekiq_enabled is defined and monit_sidekiq_enabled == true

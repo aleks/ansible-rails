@@ -46,3 +46,6 @@ puma_threads: 4,16
 
 # Elasticsearch
 elasticsearch_version: 2.3.1
+
+# Monit
+monit_sidekiq_enabled: true
