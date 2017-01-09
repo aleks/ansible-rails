@@ -37,7 +37,7 @@ mysql_app_db_password: SET_PASSWORD_HERE
 # Ruby
 ruby_install_version: 0.6.1
 chruby_version: 0.3.9
-ruby_version: 2.3.1
+ruby_version: 2.3.3
 
 # Rails
 rails_secret_key_base: SET_RAILS_SECRET_KEY_BASE_HERE
