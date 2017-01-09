@@ -35,7 +35,7 @@ mysql_root_db_password: SET_PASSWORD_HERE
 mysql_app_db_password: SET_PASSWORD_HERE
 
 # Ruby
-ruby_install_version: 0.6.0
+ruby_install_version: 0.6.1
 chruby_version: 0.3.9
 ruby_version: 2.3.1
 
