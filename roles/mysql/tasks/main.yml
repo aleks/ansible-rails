@@ -25,7 +25,7 @@
     - localhost
 
 - name: Create MySQL Database
-  action: mysql_db name={{ deploy_app_name  }} state=present
+  action: mysql_db name={{ deploy_app_name  }} state=present encoding=utf8mb4
 
 - name: Create MySQL User
   action: mysql_user name={{ deploy_app_name  }} priv={{ deploy_app_name  }}.*:ALL state=present password="{{ mysql_app_db_password }}"
