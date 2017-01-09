@@ -5,6 +5,7 @@
 - name: Perform Safe Upgrade
   apt: upgrade=safe update_cache=yes
 
+- include: hostname.yml
 - include: swap.yml
   when: swap_enabled is defined and swap_enabled == true
 - include: tools.yml
