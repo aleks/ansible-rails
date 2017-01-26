@@ -1,3 +1,3 @@
 ---
+- include: rbenv.yml
 - include: ruby-install.yml
-- include: chruby.yml

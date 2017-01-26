@@ -1,11 +1,7 @@
 ---
-# Server Timzone + Locale
-timezone: Europe/Berlin
-locale: en_US.UTF-8
-
 # Swap
 # Uncommend here and in /roles/common/tasks/main.yml
-swap_enabled: true
+swap_enabled: false
 swap_file_path: /swapfile
 swap_file_size_kb: 1024
 
@@ -30,9 +26,10 @@ certbot_email: SET_EMAIL_HERE
 ssh_public_key_files:
   - /Users/SET_YOUR_LOCAL_USERNAME_HERE/.ssh/id_rsa.pub
 
-# MySQL
-mysql_root_db_password: SET_PASSWORD_HERE
-mysql_app_db_password: SET_PASSWORD_HERE
+# Postgres
+postgres_db_name: SET_DB_NAME
+postgres_db_username: SET_USERNAME_HERE
+postgres_db_password: SET_PASSWORD_HERE
 
 # Ruby
 ruby_install_version: 0.6.1
