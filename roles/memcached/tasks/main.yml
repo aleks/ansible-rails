@@ -1,0 +1,3 @@
+---
+- include: setup.yml
+  when: memchached_enabled is defined and memchached_enabled == true

@@ -1,0 +1,27 @@
+---
+- name: Install JRE
+  apt: name=default-jre state=latest
+  tags:
+    - elasticsearch
+
+- name: Install JDK
+  apt: name=default-jdk state=latest
+  tags:
+    - elasticsearch
+
+- name: Download Elasticsearch .deb
+  get_url:
+    url: "https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/{{ elasticsearch_version }}/elasticsearch-{{ elasticsearch_version }}.deb"
+    dest: /root/elasticsearch-{{ elasticsearch_version }}.deb
+  tags:
+    - elasticsearch
+
+- name: Install Elasticsearch
+  command: dpkg -i /root/elasticsearch-{{ elasticsearch_version }}.deb
+  tags:
+    - elasticsearch
+
+- name: Ensure Elasticsearch service is up
+  action: service name=elasticsearch state=started
+  tags:
+    - elasticsearch

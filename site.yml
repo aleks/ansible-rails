@@ -20,6 +20,7 @@
     - certbot
     - ruby
     - rails
-    # - monit
-    # - redis
-    # - elasticsearch
+    - monit
+    - memcached
+    - redis
+    - elasticsearch
