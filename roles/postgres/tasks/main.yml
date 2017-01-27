@@ -16,6 +16,9 @@
   notify:
     - restart postgresql
 
+- name: Ensure the PostgreSQL service is running
+  service: name=postgresql state=started enabled=yes
+
 - name: create database
   become: yes
   become_user: postgres
@@ -24,4 +27,4 @@
 - name: create database user
   become: yes
   become_user: postgres
-  postgresql_user: db={{ postgres_db_name }} name={{ postgres_db_username }} password={{ postgres_db_password }} =ALL role_attr_flags=CREATEDB,LOGIN
+  postgresql_user: db={{ postgres_db_name }} name={{ postgres_db_username }} password={{ postgres_db_password }} priv=ALL role_attr_flags=CREATEDB,LOGIN

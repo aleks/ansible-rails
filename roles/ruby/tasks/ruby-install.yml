@@ -1,15 +1,9 @@
 ---
-- name: Checks if target ruby is installed
-  shell: cd; bash -lc "rbenv versions | grep {{ ruby_version }} | tr '*' ' ' | sed -e 's/\s\+//' | cut -f1 -d' '"
-  register: ruby_is_installed
+- name: install ruby {{ ruby_version }}
+  command: su - {{ deploy_user }} -c "rbenv install {{ ruby_version }}"
 
-- name: Installs ruby
-  shell: cd; bash -lc "CONFIGURE_OPTS=--disable-install-rdoc rbenv install {{ ruby_version }}"
-  when: ruby_is_installed.stdout != ruby_version
-  # Takes no more than 600 secs on a small VM
-  async: 600
-  poll: 30
-  notify: Sets global ruby ruby_version
+- name: set default version
+  command: su - {{ deploy_user }} -c "rbenv global {{ ruby_version }}"
 
-- name: Install Bundler
-  command: /opt/rubies/ruby-{{ ruby_version }}/bin/gem install bundler
+- name: install bundler
+  command: su - {{ deploy_user }} -c "gem install bundler"

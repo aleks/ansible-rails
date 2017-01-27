@@ -16,3 +16,7 @@
 
 - name: Installs ruby-build
   git: repo=git://github.com/sstephenson/ruby-build.git dest=~{{ deploy_user }}/.rbenv/plugins/ruby-build
+
+- name: install rbenv-gem-rehash
+  git: repo=https://github.com/sstephenson/rbenv-gem-rehash.git
+       dest=/home/{{ deploy_user }}/.rbenv/plugins/rbenv-gem-rehash
