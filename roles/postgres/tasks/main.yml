@@ -4,6 +4,7 @@
   with_items:
     - python-pycurl
     - python-psycopg2
+    - libpq-dev
 
 - name: add PostgreSQL repo key
   apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc
