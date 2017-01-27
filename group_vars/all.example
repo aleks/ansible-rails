@@ -1,19 +1,18 @@
 ---
-# Swap
-# Uncommend here and in /roles/common/tasks/main.yml
-swap_enabled: false
-swap_file_path: /swapfile
-swap_file_size_kb: 1024
-
 # General settings
 deploy_dir: /home/deploy/
 deploy_user: deploy
 deploy_password: SET_PASSWORD_HERE
-deploy_app_name: SET_APP_NAME_HERE
-deploy_server_hostname: SET_APP_HOSTNAME_HERE
+deploy_app_name: app
+deploy_server_hostname: SET_HOSTNAME_HERE
+
+# Swap
+swap_enabled: false
+swap_file_path: /swapfile
+swap_file_size_kb: 1024
 
 # Nginx
-nginx_https_enabled: true
+nginx_https_enabled: false
 
 # Certbot
 certbot_url: https://dl.eff.org/certbot-auto
@@ -24,17 +23,15 @@ certbot_email: SET_EMAIL_HERE
 # This copies your local public key to the remote machine
 # for passwordless login. Modify this!
 ssh_public_key_files:
-  - /Users/SET_YOUR_LOCAL_USERNAME_HERE/.ssh/id_rsa.pub
+  - /Users/SET_USER_HERE/.ssh/id_rsa.pub
 
 # Postgres
-postgres_db_name: SET_DB_NAME
+postgres_db_name: SET_DB_NAME_HERE
 postgres_db_username: SET_USERNAME_HERE
 postgres_db_password: SET_PASSWORD_HERE
 
 # Ruby
-ruby_install_version: 0.6.1
-chruby_version: 0.3.9
-ruby_version: 2.3.3
+ruby_version: 2.2.3
 
 # Rails
 rails_secret_key_base: SET_RAILS_SECRET_KEY_BASE_HERE
@@ -42,7 +39,15 @@ puma_workers: 4
 puma_threads: 4,16
 
 # Elasticsearch
+elasticsearch_enabled: false
 elasticsearch_version: 2.3.1
 
 # Monit
-monit_sidekiq_enabled: true
+monit_enabled: false
+monit_sidekiq_enabled: false
+
+# Redis
+redis_enabled: false
+
+# Memchached
+memchached_enabled: false
