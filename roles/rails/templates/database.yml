@@ -1,7 +1,7 @@
 production:
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
-  database: {{ deploy_app_name }}
-  username: {{ deploy_app_name }}
-  password: {{ mysql_app_db_password }}
+  database: {{ postgres_db_name }}
+  username: {{ postgres_db_username }}
+  password: {{ postgres_db_password }}
   host: localhost

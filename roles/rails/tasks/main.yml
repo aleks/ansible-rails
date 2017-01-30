@@ -23,11 +23,17 @@
 - name: Create shared/tmp dir
   file: path={{ deploy_dir }}{{ deploy_app_name }}/shared/tmp state=directory owner={{ deploy_user }} group={{ deploy_user }}
 
+- name: Copy .env
+  template: src=.env dest={{ deploy_dir }}{{ deploy_app_name }}/shared/.env owner={{ deploy_user }} group={{ deploy_user }}
+  when: rails_use_dot_env is defined and rails_use_dot_env == true
+
 - name: Copy secrets.yml
   template: src=secrets.yml dest={{ deploy_dir }}{{ deploy_app_name }}/shared/config/secrets.yml owner={{ deploy_user }} group={{ deploy_user }}
+  when: rails_use_dot_env is defined and rails_use_dot_env == false
 
 - name: Copy database.yml
   template: src=database.yml dest={{ deploy_dir }}{{ deploy_app_name }}/shared/config/database.yml owner={{ deploy_user }} group={{ deploy_user }}
+  when: rails_use_dot_env is defined and rails_use_dot_env == false
 
 - name: Copy puma.rb
   template: src=puma.rb dest={{ deploy_dir }}{{ deploy_app_name }}/shared/puma.rb owner={{ deploy_user }} group={{ deploy_user }}

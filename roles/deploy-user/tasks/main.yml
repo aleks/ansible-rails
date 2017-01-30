@@ -12,10 +12,10 @@
 - name: Add deploy user to sudoers
   action: 'lineinfile dest=/etc/sudoers regexp="{{ deploy_user }} ALL" line="{{ deploy_user }} ALL=(ALL) NOPASSWD: ALL" state=present'
 
-- name: Disallow root SSH access
-  action: lineinfile dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
-  notify: Restart sshd
+# - name: Disallow root SSH access
+#   action: lineinfile dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
+#   notify: Restart sshd
 
-- name: Disallow password authentication
-  action: lineinfile dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
-  notify: Restart sshd
+# - name: Disallow password authentication
+#   action: lineinfile dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
+#   notify: Restart sshd

@@ -1,0 +1,22 @@
+---
+- name: Install monit
+  apt: name=monit state=latest
+
+- name: Enable monit HTTP interface
+  blockinfile:
+    dest: /etc/monit/monitrc
+    marker: '# {mark} ANSIBLE MANAGED BLOCK'
+    block: |
+      set httpd port 2812 and
+        use address localhost  # only accept connection from localhost
+        allow localhost        # allow localhost to connect to the server and
+        allow admin:monit      # require user 'admin' with password 'monit'
+
+- name: Copy Puma monit config
+  template: src=monit_puma_config dest=/etc/monit/conf.d/puma_{{ deploy_app_name }}.conf owner={{ deploy_user }} group={{ deploy_user }}
+  notify: restart monit
+
+- name: Copy Sidekiq monit config
+  template: src=monit_sidekiq_config dest=/etc/monit/conf.d/sidekiq_{{ deploy_app_name }}.conf owner={{ deploy_user }} group={{ deploy_user }}
+  notify: restart monit
+  when: monit_sidekiq_enabled is defined and monit_sidekiq_enabled == true

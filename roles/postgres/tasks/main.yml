@@ -1,0 +1,31 @@
+---
+- name: Install postgres dependencies
+  apt: name={{item}} state=present
+  with_items:
+    - python-pycurl
+    - python-psycopg2
+    - libpq-dev
+
+- name: add PostgreSQL repo key
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc
+
+- name: add PostgreSQL repo
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main'
+
+- name: install PostgreSQL
+  apt: pkg=postgresql state=latest update_cache=true
+  notify:
+    - restart postgresql
+
+- name: Ensure the PostgreSQL service is running
+  service: name=postgresql state=started enabled=yes
+
+- name: create database
+  become: yes
+  become_user: postgres
+  postgresql_db: name={{ postgres_db_name }}
+
+- name: create database user
+  become: yes
+  become_user: postgres
+  postgresql_user: db={{ postgres_db_name }} name={{ postgres_db_username }} password={{ postgres_db_password }} priv=ALL role_attr_flags=CREATEDB,LOGIN
