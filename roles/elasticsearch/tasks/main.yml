@@ -22,6 +22,6 @@
     - elasticsearch
 
 - name: Ensure Elasticsearch service is up
-  action: service name=elasticsearch state=started
+  action: service name=elasticsearch state=started enabled=yes
   tags:
     - elasticsearch
