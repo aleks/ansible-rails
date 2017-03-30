@@ -19,6 +19,7 @@ server {
   ssl on;
   ssl_certificate /etc/letsencrypt/live/{{ deploy_server_hostname }}/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/{{ deploy_server_hostname }}/privkey.pem;
+  ssl_dhparam /etc/nginx/dhparam.pem;
   ssl_session_timeout 1d;
   ssl_session_cache shared:SSL:50m;
   ssl_session_tickets off;
