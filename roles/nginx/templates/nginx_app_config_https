@@ -1,4 +1,4 @@
-upstream puma_production { 
+upstream puma_production {
   server unix:{{ deploy_dir  }}{{ deploy_app_name }}/shared/tmp/sockets/puma.sock fail_timeout=0;
 }
 
