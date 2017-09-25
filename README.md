@@ -1,5 +1,4 @@
-# Ansible: Ruby on Rails Server (Ubuntu 16.x)
-
+# Ansible: Ruby on Rails Server
 Use this ansible playbook to setup a fresh server with the following components:
 
 * Nginx
