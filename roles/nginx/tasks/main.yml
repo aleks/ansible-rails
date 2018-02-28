@@ -23,3 +23,6 @@
 
 - name: Symlink to sites-enabled
   file: src=/etc/nginx/sites-available/{{ deploy_app_name }} dest=/etc/nginx/sites-enabled/{{ deploy_app_name }} owner=root group=root state=link
+
+- name: Copy htpasswd
+  template: src=htpasswd dest=/etc/nginx/.htpasswd owner=root group=root

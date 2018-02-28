@@ -5,7 +5,11 @@ upstream puma_production {
 server {
   listen 80;
 
+  #auth_basic "Restricted";
+  #auth_basic_user_file /etc/nginx/.htpasswd;
+
   server_name {{ deploy_server_hostname }};
+
   root {{ deploy_dir  }}{{ deploy_app_name }}/current/public;
   try_files $uri/index.html $uri @puma_production;
 
