@@ -43,6 +43,7 @@ group :development do
   gem 'capistrano-chruby'
   gem 'capistrano3-puma'
   gem 'capistrano-sidekiq'
+  gem 'capistrano-npm'
 end
 ```
 
@@ -57,6 +58,7 @@ require 'capistrano/bundler'
 require 'capistrano/rails/migrations'
 require 'capistrano/rails/assets'
 require 'capistrano/chruby'
+require 'capistrano/npm'
 
 # Puma
 require 'capistrano/puma'
