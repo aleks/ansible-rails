@@ -15,3 +15,13 @@
 
 - name: Install Bundler
   command: /opt/rubies/ruby-{{ ruby_version }}/bin/gem install bundler
+
+- name: Add chruby.sh to .bashrc
+  lineinfile:
+    path: /home/deploy/.bashrc
+    line: 'source /etc/profile.d/chruby.sh'
+
+- name: Add chruby {{ ruby_version }} to .bashrc
+  lineinfile:
+    path: /home/deploy/.bashrc
+    line: 'chruby {{ ruby_version }}'
