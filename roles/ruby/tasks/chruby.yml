@@ -24,4 +24,4 @@
 - name: Add chruby {{ ruby_version }} to .bashrc
   lineinfile:
     path: /home/deploy/.bashrc
-    line: 'chruby {{ ruby_version }}'
+    line: 'chruby ruby-{{ ruby_version }}'
