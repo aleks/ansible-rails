@@ -1,5 +1,8 @@
-# Installing required ruby versions
-- include: ruby-install.yml version={{ ruby_version }}
+# Common prereqs (e.g. build tools, libs)
+- include: common-prereqs.yml
+
+# rbenv setup
+- include: rbenv-setup.yml
   become: yes
   become_user: "{{ deploy_user }}"
 
