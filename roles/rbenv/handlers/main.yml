@@ -1,0 +1,5 @@
+# Configuring ruby environment (e.g. setting the defaut ruby)
+- include: rbenv-configure.yml
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+

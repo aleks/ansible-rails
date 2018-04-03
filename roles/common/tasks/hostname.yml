@@ -1,2 +1,9 @@
 - name: set hostname
   hostname: name={{ deploy_server_hostname }}
+
+- name: add myself to /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '^127\.0\.0\.1[ \t]+localhost'
+    line: "127.0.0.1 localhost {{ deploy_server_hostname }}"
+    state: present
