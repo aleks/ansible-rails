@@ -1,0 +1,78 @@
+---
+# Server Timzone + Locale
+timezone: Europe/Berlin
+locale: en_US.UTF-8
+
+# Swap
+# Uncommend here and in /roles/common/tasks/main.yml
+swap_enabled: true
+swap_file_path: /swapfile
+swap_file_size_kb: 1024
+
+# General settings
+deploy_dir: /home/deploy/
+deploy_user: deploy
+deploy_password: deploy
+deploy_app_name: iread
+deploy_server_hostname: iread
+
+# Nginx
+nginx_https_enabled: true
+
+# Certbot
+certbot_url: https://dl.eff.org/certbot-auto
+certbot_dir: /opt/certbot
+certbot_email: 14520171@gm.uit.edu.vn
+
+# Authorized Hosts
+# This copies your local public key to the remote machine
+# for passwordless login. Modify this!
+ssh_public_key_files:
+  - /home/dongnh/.ssh/id_rsa.pub
+
+# MySQL
+mysql_root_db_password: dongnh
+mysql_app_db_password: ''
+
+# Ruby
+ruby_version: 2.3.1
+ruby_default: 2.3.1
+
+# Rails
+# rails_secret_key_base: 4915df7074e31eac68cdd8b10c7c3967bad96f3d189278af24793115c21da9d9ae4ffb50244848fa26fcbf27d40e680c5571dbc9d3cbafc7e2f11f2a68f3a649
+# puma_workers: 4
+# puma_threads: 4,16
+
+# Elasticsearch
+elasticsearch_version: 2.3.1
+
+# Monit
+monit_sidekiq_enabled: true
+
+# Dependencies required to build ruby
+# YMMV if you want something else than MRI
+ruby_deps:
+  - autoconf
+  - automake
+  - bison
+  - build-essential
+  - curl
+  - exuberant-ctags
+  - git-core
+  - libreadline6
+  - libreadline6-dev
+  - libreadline-dev
+  - libsqlite3-0
+  - libsqlite3-dev
+  - libssl-dev
+  - libyaml-dev
+  - libc6-dev
+  - libncurses5-dev
+  - libtool
+  - libxml2-dev
+  - libxslt1-dev
+  - openssl
+  - sqlite3
+  - subversion
+  - zlib1g
+  - zlib1g-dev

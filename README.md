@@ -43,6 +43,7 @@ group :development do
   gem 'capistrano-chruby'
   gem 'capistrano3-puma'
   gem 'capistrano-sidekiq'
+  gem 'capistrano-npm'
 end
 ```
 
@@ -57,12 +58,15 @@ require 'capistrano/bundler'
 require 'capistrano/rails/migrations'
 require 'capistrano/rails/assets'
 require 'capistrano/chruby'
+require 'capistrano/npm'
 
 # Puma
 require 'capistrano/puma'
-require 'capistrano/puma/workers'
-require 'capistrano/puma/monit'
-require 'capistrano/puma/nginx'
+install_plugin Capistrano::Puma  # Default puma tasks
+install_plugin Capistrano::Puma::Workers  # if you want to control the workers (in cluster mode)
+# install_plugin Capistrano::Puma::Jungle # if you need the jungle tasks
+install_plugin Capistrano::Puma::Monit  # if you need the monit tasks
+install_plugin Capistrano::Puma::Nginx  # if you want to upload a nginx site template
 
 # Sidekiq
 require 'capistrano/sidekiq'

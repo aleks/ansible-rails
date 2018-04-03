@@ -18,12 +18,9 @@
     - ruby:install
     - install
 
-- name: Sets global ruby version
-  shell: cd; bash -lc "rbenv global {{ version }}"
-  # Takes no more than 600 secs on a small VM
-  async: 600
-  poll: 30
-  tags:
-    - ruby
-    - ruby:install
-    - install
+
+
+
+
+
+

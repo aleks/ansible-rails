@@ -1,4 +1,5 @@
 - name: Sets global ruby version
-  #become: yes
-  #become_user: "{{ ruby_deploy_user }}"
   shell: cd; bash -lc "rbenv global {{ ruby_default }}"
+
+- name: Install bundler gem
+  shell: cd; bash -lc "gem install bundler"
