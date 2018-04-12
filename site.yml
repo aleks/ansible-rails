@@ -19,7 +19,8 @@
   roles:
     - common
     - deploy-user
-    - mysql
+    - { role: mysql, when: app_db_adapter == 'mysql' }
+    - { role: ANXS.postgresql, when: app_db_adapter == 'postgres' }
     - nginx
     - certbot
     - ruby
