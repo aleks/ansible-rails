@@ -1,14 +1,12 @@
 ---
-- name: Download ruby-install
-  get_url:
-    url: "https://github.com/postmodern/ruby-install/archive/v{{ ruby_install_version }}.tar.gz"
-    dest: /root/ruby-install.tar.gz
-
-- name: Unpack ruby-install
-  command: tar -xzvf /root/ruby-install.tar.gz
+- name: Download and unpack ruby-install
+  unarchive:
+    src: "https://github.com/postmodern/ruby-install/archive/v{{ ruby_install_version }}.tar.gz"
+    dest: /home/deploy/
+    remote_src: yes
 
 - name: Install ruby-install
-  make: chdir=/root/ruby-install-{{ ruby_install_version }} target=install
+  make: chdir=/home/deploy/ruby-install-{{ ruby_install_version }} target=install
 
 - name: Create rubies directory
   file: path=/opt/rubies/ state=directory mode=0755 owner=root group=root
