@@ -39,7 +39,7 @@ ssh_public_key_files:
   - /Users/SET_YOUR_LOCAL_USERNAME_HERE/.ssh/id_rsa.pub
 
 # DB general
-app_db_adapter: mysql # mysql OR postgresql
+app_db_adapter: mysql2 # mysql2 OR postgresql
 app_db_password: SET_PASSWORD_HERE
 
 # MySQL
