@@ -10,3 +10,4 @@
   when: swap_enabled is defined and swap_enabled == true
 - import_tasks: tools.yml
 - import_tasks: locale.yml
+- import_tasks: security.yml
