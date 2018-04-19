@@ -7,7 +7,7 @@
   register: dhparam
 
 - name: Generate dhparam
-  command: openssl dhparam -out /etc/nginx/dhparam.pem 2048
+  command: openssl dhparam -out /etc/nginx/dhparam.pem 4096
   when: nginx_https_enabled is defined and nginx_https_enabled == true and dhparam.stat.exists == false
 
 - name: Copy nginx configuration (with HTTPS enabled)
