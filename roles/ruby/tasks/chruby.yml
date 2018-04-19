@@ -1,14 +1,12 @@
 ---
 - name: Download chruby
-  get_url:
-    url: "https://github.com/postmodern/chruby/archive/v{{ chruby_version }}.tar.gz"
-    dest: /root/chruby.tar.gz
-
-- name: Unpack chruby
-  command: tar -xzvf /root/chruby.tar.gz
+  unarchive:
+    src: "https://github.com/postmodern/chruby/archive/v{{ chruby_version }}.tar.gz"
+    dest: /home/deploy/
+    remote_src: yes
 
 - name: Install chruby
-  make: chdir=/root/chruby-{{ chruby_version }} target=install
+  make: chdir=/home/deploy/chruby-{{ chruby_version }} target=install
 
 - name: Copy chruby.sh
   copy: src=chruby.sh dest=/etc/profile.d/chruby.sh owner=root group=root
