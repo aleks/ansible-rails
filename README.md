@@ -5,6 +5,7 @@ Use this ansible playbook to setup a fresh server with the following components:
 * Puma App Server
 * Certbot (Let's Encrypt)
 * MySQL
+* Postgres (via https://github.com/ANXS/postgresql)
 * Memcached
 * Redis
 * Sidekiq
@@ -20,9 +21,13 @@ Use this ansible playbook to setup a fresh server with the following components:
 ## Prerequisites & Config
 
 1. Rename ```hosts.example``` to ```hosts``` and modify the contents.
-2. Rename ```group_vars/all.example``` to ```group_vars/all``` and modify the contentes.
+2. Rename ```group_vars/all.example``` to ```group_vars/all``` and modify the contents.
 
 	There are a bunch of things you can set in ```group_vars/all```. Don't forget to add your host address to ```hosts```.
+
+## Install dependencies
+
+Run `ansible-galaxy install -r requirements.yml`.
 
 ## Install Playbook
 

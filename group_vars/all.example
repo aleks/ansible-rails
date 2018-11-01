@@ -38,9 +38,21 @@ certbot_email: SET_EMAIL_HERE
 ssh_public_key_files:
   - /Users/SET_YOUR_LOCAL_USERNAME_HERE/.ssh/id_rsa.pub
 
+# DB general
+app_db_adapter: mysql2 # mysql2 OR postgresql
+app_db_password: SET_PASSWORD_HERE
+
 # MySQL
 mysql_root_db_password: SET_PASSWORD_HERE
-mysql_app_db_password: SET_PASSWORD_HERE
+
+# Postgresql
+postgresql_version: 9.6
+postgresql_ext_install_dev_headers: yes
+postgresql_databases:
+  - name: "{{ deploy_app_name }}"
+postgresql_users:
+  - name: "{{ deploy_app_name }}"
+    pass: "{{ app_db_password }}"
 
 # Ruby
 ruby_install_version: 0.6.1

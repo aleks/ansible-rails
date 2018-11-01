@@ -42,4 +42,4 @@
   mysql_user: name={{ deploy_app_name }}
               priv={{ deploy_app_name }}.*:ALL
               state=present
-              password="{{ mysql_app_db_password }}"
+              password="{{ app_db_password }}"

@@ -1,7 +1,7 @@
 production:
-  adapter: mysql2
-  encoding: utf8
+  adapter: {{ app_db_adapter }}
+  encoding: unicode
   database: {{ deploy_app_name }}
   username: {{ deploy_app_name }}
-  password: {{ mysql_app_db_password }}
+  password: {{ app_db_password }}
   host: localhost
